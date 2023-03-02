@@ -1,3 +1,5 @@
+/*
+
 * {
     box-sizing: border-box;
     color: white;
@@ -13,9 +15,7 @@ body {
     background-image: url(https://wallpapercave.com/wp/wp3082397.jpg);
     background-position: center center;
     background-size: cover;
-    /*
-    background-image: linear-gradient(to top, #1d46ff, #cfe3ff);
-    */
+   
 }
 
 header {
@@ -83,11 +83,6 @@ header h1 {
     justify-content: space-evenly;
 }
 
-/*
-p {
-    text-align: left;
-}
-*/
 
 footer {
 
@@ -95,4 +90,4 @@ footer {
   
 }
 
-
+*/
