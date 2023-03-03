@@ -20,18 +20,21 @@
             </div>
 
         </div>
-            <input class="text-center mx-auto mt-2 mb-6 text-black rounded-md block" type="search" id="search-bar" name="search bar" placeholder="Search By City">
+        <div class="flex justify-center mt-2 mb-6">
+            <input class="text-center text-black rounded-md" type="search" id="search-bar" name="search bar" placeholder="Search By City">
+            <button class="bg-indigo-300/50 rounded-md px-2 mx-2"  type="submit">Search</button>
+        </div>
         </header>
 
     <main>
         <div class="text-center w-full" id="current-info">
-            <h1 class="text-5xl" id="current-city">Current City</h1>
+            <h1 class="text-5xl" id="current-city">Laredo, Tx</h1>
             <div class="text-8xl p-2" id="current-temp">80</div>
             <div class="text-2xl">
             <span id="current-wind">W: </span> <span id="current-humidity">H: </span>
             </div>
         </div>
-        <div class="py-10 my-10 mx-5 text-center bg-slate-50/50 rounded-lg " id="forecast-container">
+        <div class="py-10 mt-10 mb-5 mx-5 text-center bg-slate-50/50 rounded-lg " id="forecast-container">
             <h1 class="text-4xl">5-Day Forecast</h1>
 
             <div class="flex-col py-10 space-y-10 text-xl" id="_5day-container">
@@ -79,7 +82,7 @@
         </div>
     </main>
 
-    <footer class="">
+    <footer class="text-center pb-3">
         <h4>Made with &#10084;&#65039; - Omar</h4>
     </footer>
 </body>
