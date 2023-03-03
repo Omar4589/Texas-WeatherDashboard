@@ -9,60 +9,67 @@
     <link rel="stylesheet" href="./assets/style.css">
 </head>
 
-<body class="bg-blue-600 h-screen text-center text-white">
-    <header class=" pt-4 p-10">
-        <h1 class="text-6xl pt-4" id="current-city">Weather Dashboard</h1>
-        <div class="text-lg pb-2" id="current-date">mm/dd/yyyy</div>
-        <input class="text-center rounded-md" type="search" id="search-bar" name="search bar" placeholder="Search By City">
-    </header>
+<body class="bg-blue-600 text-white">  
+        <header class="">
+        <div class="flex items-center justify-between px-9 pt-5 pb-3">
+            <h1 class="text-3xl" id="current-city">Weather Dashboard</h1>
+
+            <div class="text-center">
+                <div class="text-xl" id="current-date">mm/dd/yyyy</div>
+                <div>12:00pm</div>
+            </div>
+
+        </div>
+            <input class="text-center mx-auto mt-2 mb-6 text-black rounded-md block" type="search" id="search-bar" name="search bar" placeholder="Search By City">
+        </header>
 
     <main>
-        <div class="" id="current-info">
+        <div class="text-center w-full" id="current-info">
             <h1 class="text-5xl" id="current-city">Current City</h1>
-            <div class="text-9xl p-2" id="current-temp">80</div>
+            <div class="text-8xl p-2" id="current-temp">80</div>
             <div class="text-2xl">
             <span id="current-wind">W: </span> <span id="current-humidity">H: </span>
             </div>
         </div>
-        <div class="my-10 px-20 pt-10 pb-20 bg-white/40 rounded-3xl mx-28" id="forecast-container">
-            <h1 class="text-5xl">5-Day Forecast</h1>
+        <div class="py-10 my-10 mx-5 text-center bg-slate-50/50 rounded-lg " id="forecast-container">
+            <h1 class="text-4xl">5-Day Forecast</h1>
 
-            <div class="flex justify-between py-20 pb-5 text-2xl " id="_5day-container">
-                <div class="space-y-5" id="day-1">
-                        <h2>mm/dd/yyyy</h2>
-                        <div class="text-left space-y-5">
+            <div class="flex-col py-10 space-y-10 text-xl" id="_5day-container">
+                <div class="" id="day-1">
+                        <h2 class="text-3xl">mm/dd/yyyy</h2>
+                        <div class="w-9/12 pt-5 space-y-3">
                             <p>Temp:</p>
                             <p>Wind:</p>
                             <p>Humidity:</p>
                         </div>
                 </div>
-                <div class="space-y-5" id="day-2">
-                    <h2>mm/dd/yyyy</h2>
-                    <div class="text-left space-y-5">
+                <div class="" id="day-2">
+                    <h2 class="text-3xl">mm/dd/yyyy</h2>
+                    <div class="w-9/12 pt-5 space-y-3">
                         <p>Temp:</p>
                         <p>Wind:</p>
                         <p>Humidity:</p>
                     </div>
                 </div>
-                <div class="space-y-5" id="day-3">
-                    <h2>mm/dd/yyyy</h2>
-                    <div class="text-left space-y-5">
+                <div class="" id="day-3">
+                    <h2 class="text-3xl">mm/dd/yyyy</h2>
+                    <div class="w-9/12 pt-5 space-y-3">
                         <p>Temp:</p>
                         <p>Wind:</p>
                         <p>Humidity:</p>
                     </div>
                 </div>
-                <div class="space-y-5" id="day-4">
-                    <h2>mm/dd/yyyy</h2>
-                    <div class="text-left space-y-5">
+                <div class="" id="day-4">
+                    <h2 class="text-3xl">mm/dd/yyyy</h2>
+                    <div class="w-9/12 pt-5 space-y-3">
                         <p>Temp:</p>
                         <p>Wind:</p>
                         <p>Humidity:</p>
                     </div>
                 </div>
-                <div class="space-y-5" id="day-5">
-                    <h2>mm/dd/yyyy</h2>
-                    <div class="text-left space-y-5">
+                <div class="" id="day-5">
+                    <h2 class="text-3xl">mm/dd/yyyy</h2>
+                    <div class="w-9/12 pt-5 space-y-3">
                         <p>Temp:</p>
                         <p>Wind:</p>
                         <p>Humidity:</p>
@@ -72,7 +79,7 @@
         </div>
     </main>
 
-    <footer class="p-2">
+    <footer class="">
         <h4>Made with &#10084;&#65039; - Omar</h4>
     </footer>
 </body>
