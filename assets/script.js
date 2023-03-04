@@ -56,6 +56,22 @@ navigator.geolocation.getCurrentPosition(function (position) {
 });
 
 //Call Api that gets 5 day forecast
+function getCurrent5DayForecast() {
+  //Define API url 
+  var requestUrl = "api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=imperial&lang=en&appid=e63fb1d66b06cf4ca24641a785955170"
+  
+  fetch(requestUrl)
+      .then(function (response) {
+        //Parse response into JSON
+        return response.json();
+      })
+  .then(function (data) {
+      console.log(data);
+      });
+};
+
+  getCurrent5DayForecast();
+  
 //get handles on day-1,day-2, through day-5.
 //insert forecast dates into first child element inside parent container day-1 etc
 //insert rest of info, temp, wind, humidy into corresponding day
