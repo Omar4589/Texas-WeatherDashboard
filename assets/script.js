@@ -26,7 +26,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
   //Function that gets weather location for current position
   function getCurrentLocationWeather() {
     //Define API url with embedded latitude and longitude using template literals
-    var requestedUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=e63fb1d66b06cf4ca24641a785955170`;
+    var requestedUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=e63fb1d66b06cf4ca24641a785955170`;
     //Call API
     fetch(requestedUrl)
       .then(function (response) {
@@ -35,20 +35,25 @@ navigator.geolocation.getCurrentPosition(function (position) {
       })
       .then(function (data) {
         var myCity = data.name;
+        var currentTemp = data.main.temp + String.fromCharCode(176) + "F";
+        var currentWind = data.wind.speed;
+        var currentHumidity = data.main.humidity;
         console.log(data);
 
+        //gets handle on #current-city and adds myCity as text.
         $("#current-city").text(myCity);
+        //gets handle on #current-temp and adds currentTemp as text.
+        $("#current-temp").text(currentTemp);
+        //gets handle on #current-wind and adds currentWind as text.
+        $("#current-wind").text("W: " + currentWind + "mph");
+        //gets handle on #current-humidity and adds currentHumidity as text.
+        $("#current-humidity").text("H: " + currentHumidity + "%rh");
       });
   }
 
   //Call getCurrentLocationWeather function to make API call and display current weather info
   getCurrentLocationWeather();
 });
-
-//get jquery handle on current-temp
-//insert current temp text into #current-temp
-//get jquery handle on both #current-wind and #current-humidity
-//insert both handle texts into created variables above.
 
 //Call Api that gets 5 day forecast
 //get handles on day-1,day-2, through day-5.
