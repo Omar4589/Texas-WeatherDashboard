@@ -1,4 +1,4 @@
-var today = dayjs().format("dddd, MMMM D, YYYY");
+var today = dayjs().format("dddd, MM/D/YYYY");
 var currentHour = dayjs().format("h:mm:ss A");
 
 var currentDate = $("#current-date");
@@ -38,8 +38,8 @@ navigator.geolocation.getCurrentPosition(function (position) {
 
         $("#current-city").text(myCity);
         $("#current-temp").text(currentTemp);   
-        $("#current-wind").text("W: " + currentWind + "mph");
-        $("#current-humidity").text("H: " + currentHumidity + "%rh");
+        $("#current-wind").text("W: " + currentWind + " mph");
+        $("#current-humidity").text("H: " + currentHumidity + " %rh");
       });};
 
   //Call getCurrentLocationWeather function to make API call and display current weather info
