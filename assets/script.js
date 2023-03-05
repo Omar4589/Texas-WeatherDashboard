@@ -93,31 +93,50 @@ navigator.geolocation.getCurrentPosition(function (position) {
   getCurrent5DayForecast();
 });
 
-//create event listener for button
+//get search bar and search button 
     
     var searchButton = $("#search-button");
     var searchBar = $("#search-bar");
     
+//Click event listener for searchButton
     searchButton.on("click", (searchCity);
 //define funciton for when button is clicked
     function searchCity() {
+      //user inout is recorded
       var userInput = searchButton.val();
-      
+      //API Url
       geocodeUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${userInput},TX,US&limit=3&appid=e63fb1d66b06cf4ca24641a785955170`;
-      
+      //call API
       fetch(geocodeUrl)
       .then(function (response) {
         //Parse response into JSON
         return response.json();
       })
       .then(function (data) {
+          console.log(data.data);
+          //get lat and lon of searched city
+          var searchedCityLat = (data.latitude)
+          var searchedCityLon = (data.longitude)
+          //current weather API url
+          var currentWeatherSearchUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${searchedCityLat}&lon=${searchedCityLon}&units=imperial&appid=e63fb1d66b06cf4ca24641a785955170`;
+          //Call API
+          fetch(currentWeatherSearchUrl) {
+              .then (function(response) {
+                //parse response into json
+                return response.json();
+              })
+              .then (function(data) {
+                console.log(data);
+                //get 5day weather data 
+                //display data to 5day conainer
+              })
+           });
+           
         
-        }
-    }
+    };
 
 
     
     
     
-//-function calls API to get weather info
-//of searched city.
+
