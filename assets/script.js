@@ -94,6 +94,19 @@ navigator.geolocation.getCurrentPosition(function (position) {
 });
 
 //create event listener for button
+    
+    var searchButton = $("#search-button");
+    var searchBar = $("#search-bar");
+    
+    searchButton.on("click", (searchCity);
 //define funciton for when button is clicked
+    function searchCity() {
+      
+    }
+
+
+    
+    
+    
 //-function calls API to get weather info
 //of searched city.
