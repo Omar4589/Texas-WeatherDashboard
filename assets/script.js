@@ -101,7 +101,18 @@ navigator.geolocation.getCurrentPosition(function (position) {
     searchButton.on("click", (searchCity);
 //define funciton for when button is clicked
     function searchCity() {
+      var userInput = searchButton.val();
       
+      geocodeUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${userInput},TX,US&limit=3&appid=e63fb1d66b06cf4ca24641a785955170`;
+      
+      fetch(geocodeUrl)
+      .then(function (response) {
+        //Parse response into JSON
+        return response.json();
+      })
+      .then(function (data) {
+        
+        }
     }
 
 
