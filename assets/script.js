@@ -63,7 +63,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
           if (i % 8 === 0) {
             every8thForecast.push(forecastList[i]);}
         }
-        console.log(every8thForecast);
+        //console.log(every8thForecast);
 
         var day1Date = $("#day-1").children().eq(0).text(dayjs(every8thForecast[0].dt_txt).format("MM/DD/YY"));
         var day2Date = $("#day-2").children().eq(0).text(dayjs(every8thForecast[1].dt_txt).format("MM/DD/YY"));
@@ -93,7 +93,55 @@ navigator.geolocation.getCurrentPosition(function (position) {
   getCurrent5DayForecast();
 });
 
-//create event listener for button
+//get search bar and search button 
+var searchButton = $("#search-button");
+var searchBar = $("#search-bar");
+    
+//Click event listener for searchButton
+searchButton.on("click", searchCity);
+    
 //define funciton for when button is clicked
-//-function calls API to get weather info
-//of searched city.
+function searchCity() {
+//user inout is recorded
+  var userInput = searchBar.val();
+//API Url
+  var geocodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${userInput},TX,US&limit=1&appid=e63fb1d66b06cf4ca24641a785955170`;
+//call API
+  fetch(geocodeUrl)
+    .then(function (response) {
+    //Parse response into JSON
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      var searchedCityLat = data[0].lat;
+      var searchedCityLon = data[0].lon;
+//current weather API url
+      var currentWeatherSearchUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${searchedCityLat}&lon=${searchedCityLon}&units=imperial&appid=e63fb1d66b06cf4ca24641a785955170`;
+//Call API
+  fetch(currentWeatherSearchUrl)
+    .then (function (response) {
+    //parse response into json
+      return response.json();
+    })
+    .then (function (data) {
+      console.log(data);
+//get current weather data 
+      var searchedCityName = data.name;
+      var searchedCityTemp = data.main.temp + String.fromCharCode(176) + "F";
+      var searchedCityWind = data.wind.speed;
+      var searchedCityHum = data.main.humidity;
+//display current weather data
+      $("#current-city").text(searchedCityName);
+      $("#current-temp").text(searchedCityTemp);   
+      $("#current-wind").text("W: " + searchedCityWind + " mph");
+      $("#current-humidity").text("H: " + searchedCityHum + " %rh");
+    });
+  }); 
+};
+
+
+    
+    
+    
+
