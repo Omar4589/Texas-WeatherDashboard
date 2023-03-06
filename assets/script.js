@@ -102,7 +102,7 @@ searchButton.on("click", searchCity);
     
 //define funciton for when button is clicked
 function searchCity() {
-//user inout is recorded
+//user input is recorded
   var userInput = searchBar.val();
 //API Url
   var geocodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${userInput},TX,US&limit=1&appid=e63fb1d66b06cf4ca24641a785955170`;
@@ -112,36 +112,83 @@ function searchCity() {
     //Parse response into JSON
       return response.json();
     })
-    .then(function (data) {
-      console.log(data);
+    .then(function (data) {     
       var searchedCityLat = data[0].lat;
       var searchedCityLon = data[0].lon;
-//current weather API url
+      //current weather API url
       var currentWeatherSearchUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${searchedCityLat}&lon=${searchedCityLon}&units=imperial&appid=e63fb1d66b06cf4ca24641a785955170`;
-//Call API
-  fetch(currentWeatherSearchUrl)
-    .then (function (response) {
-    //parse response into json
-      return response.json();
-    })
-    .then (function (data) {
-      console.log(data);
-//get current weather data 
-      var searchedCityName = data.name;
-      var searchedCityTemp = data.main.temp + String.fromCharCode(176) + "F";
-      var searchedCityWind = data.wind.speed;
-      var searchedCityHum = data.main.humidity;
-//display current weather data
-      $("#current-city").text(searchedCityName);
-      $("#current-temp").text(searchedCityTemp);   
-      $("#current-wind").text("W: " + searchedCityWind + " mph");
-      $("#current-humidity").text("H: " + searchedCityHum + " %rh");
-    });
-  }); 
+      //Call current weather API
+        fetch(currentWeatherSearchUrl)
+          .then (function (response) {
+            //parse response into json
+            return response.json();
+          })
+          .then (function (data) {
+            console.log(data);
+            //get current weather data 
+            var searchedCityName = data.name;
+            var searchedCityTemp = data.main.temp + String.fromCharCode(176) + "F";
+            var searchedCityWind = data.wind.speed;
+            var searchedCityHum = data.main.humidity;
+            //display current weather data
+            $("#current-city").text(searchedCityName);
+            $("#current-temp").text(searchedCityTemp);   
+            $("#current-wind").text("W: " + searchedCityWind + " mph");
+            $("#current-humidity").text("H: " + searchedCityHum + " %rh");
+          });
+
+              //5day weather forecast for searched city API url
+        var Search5dayForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${searchedCityLat}&lon=${searchedCityLon}&units=imperial&lang=en&appid=e63fb1d66b06cf4ca24641a785955170`;
+        //Call 5dayforecast API
+        fetch(Search5dayForecastUrl)
+          .then (function (response) {
+            return response.json();
+          })
+          .then (function (data) {
+            console.log(data);
+            var forecastList = data.list;
+            var every8thForecast = [];
+
+            for (var i = 0; i < forecastList.length; i++) {
+              if (i % 8 === 0) {
+                every8thForecast.push(forecastList[i]);}
+            }
+            console.log(every8thForecast);
+            var day1Date = $("#day-1").children().eq(0).text(dayjs(every8thForecast[0].dt_txt).format("MM/DD/YY"));
+        var day2Date = $("#day-2").children().eq(0).text(dayjs(every8thForecast[1].dt_txt).format("MM/DD/YY"));
+        var day3Date = $("#day-3").children().eq(0).text(dayjs(every8thForecast[2].dt_txt).format("MM/DD/YY"));
+        var day4Date = $("#day-4").children().eq(0).text(dayjs(every8thForecast[3].dt_txt).format("MM/DD/YY"));
+        var day5Date = $("#day-5").children().eq(0).text(dayjs(every8thForecast[4].dt_txt).format("MM/DD/YY"));
+        
+        var day1Temp = $("#day-1").children(1).children().eq(0).text("Temp: " + every8thForecast[0].main.temp + String.fromCharCode(176) + "F");
+        var day1Temp = $("#day-2").children(1).children().eq(0).text("Temp: " + every8thForecast[1].main.temp + String.fromCharCode(176) + "F");
+        var day1Temp = $("#day-3").children(1).children().eq(0).text("Temp: " + every8thForecast[2].main.temp + String.fromCharCode(176) + "F");
+        var day1Temp = $("#day-4").children(1).children().eq(0).text("Temp: " + every8thForecast[3].main.temp + String.fromCharCode(176) + "F");
+        var day1Temp = $("#day-5").children(1).children().eq(0).text("Temp: " + every8thForecast[4].main.temp + String.fromCharCode(176) + "F");
+
+        var day1Wind = $("#day-1").children(1).children().eq(1).text("Wind : " + every8thForecast[0].wind.speed + " mph");
+        var day2Wind = $("#day-2").children(1).children().eq(1).text("Wind : " + every8thForecast[1].wind.speed + " mph");
+        var day3Wind = $("#day-3").children(1).children().eq(1).text("Wind : " + every8thForecast[2].wind.speed + " mph");
+        var day4Wind = $("#day-4").children(1).children().eq(1).text("Wind : " + every8thForecast[3].wind.speed + " mph");
+        var day5Wind = $("#day-5").children(1).children().eq(1).text("Wind : " + every8thForecast[4].wind.speed + " mph");
+
+        var day1Humidity = $("#day-1").children(1).children().eq(2).text("Humidity : " + every8thForecast[0].main.humidity + " %rh");
+        var day2Humidity = $("#day-2").children(1).children().eq(2).text("Humidity : " + every8thForecast[1].main.humidity + " %rh");
+        var day3Humidity = $("#day-3").children(1).children().eq(2).text("Humidity : " + every8thForecast[2].main.humidity + " %rh");
+        var day4Humidity = $("#day-4").children(1).children().eq(2).text("Humidity : " + every8thForecast[3].main.humidity + " %rh");
+        var day5Humidity = $("#day-5").children(1).children().eq(2).text("Humidity : " + every8thForecast[4].main.humidity + " %rh");
+     
+
+
+          });
+
+        }); 
+
+
 };
 
 
-    
-    
-    
+          
+          
+          
 
