@@ -162,29 +162,37 @@ function searchCity() {
                 every8thForecast.push(forecastList[i]);}
             }
             console.log(every8thForecast);
-            var day1Date = $("#day-1").children().eq(0).text(dayjs(every8thForecast[0].dt_txt).format("MM/DD/YY"));
+
+        var day1Date = $("#day-1").children().eq(0).text(dayjs(every8thForecast[0].dt_txt).format("MM/DD/YY"));
         var day2Date = $("#day-2").children().eq(0).text(dayjs(every8thForecast[1].dt_txt).format("MM/DD/YY"));
         var day3Date = $("#day-3").children().eq(0).text(dayjs(every8thForecast[2].dt_txt).format("MM/DD/YY"));
         var day4Date = $("#day-4").children().eq(0).text(dayjs(every8thForecast[3].dt_txt).format("MM/DD/YY"));
         var day5Date = $("#day-5").children().eq(0).text(dayjs(every8thForecast[4].dt_txt).format("MM/DD/YY"));
         
-        var day1Temp = $("#day-1").children(1).children().eq(0).text("Temp: " + every8thForecast[0].main.temp + String.fromCharCode(176) + "F");
-        var day1Temp = $("#day-2").children(1).children().eq(0).text("Temp: " + every8thForecast[1].main.temp + String.fromCharCode(176) + "F");
-        var day1Temp = $("#day-3").children(1).children().eq(0).text("Temp: " + every8thForecast[2].main.temp + String.fromCharCode(176) + "F");
-        var day1Temp = $("#day-4").children(1).children().eq(0).text("Temp: " + every8thForecast[3].main.temp + String.fromCharCode(176) + "F");
-        var day1Temp = $("#day-5").children(1).children().eq(0).text("Temp: " + every8thForecast[4].main.temp + String.fromCharCode(176) + "F");
+        var day1Icon = $("#weatherIcon1").attr("src", "https://openweathermap.org/img/wn/" + every8thForecast[0].weather[0].icon + ".png").addClass("inline");
+        var day2Icon = $("#weatherIcon2").attr("src", "https://openweathermap.org/img/wn/" + every8thForecast[1].weather[0].icon + ".png").addClass("inline");
+        var day3Icon = $("#weatherIcon3").attr("src", "https://openweathermap.org/img/wn/" + every8thForecast[2].weather[0].icon + ".png").addClass("inline");
+        var day4Icon = $("#weatherIcon4").attr("src", "https://openweathermap.org/img/wn/" + every8thForecast[3].weather[0].icon + ".png").addClass("inline");
+        var day5Icon = $("#weatherIcon5").attr("src", "https://openweathermap.org/img/wn/" + every8thForecast[4].weather[0].icon + ".png").addClass("inline");
+        
 
-        var day1Wind = $("#day-1").children(1).children().eq(1).text("Wind : " + every8thForecast[0].wind.speed + " mph");
-        var day2Wind = $("#day-2").children(1).children().eq(1).text("Wind : " + every8thForecast[1].wind.speed + " mph");
-        var day3Wind = $("#day-3").children(1).children().eq(1).text("Wind : " + every8thForecast[2].wind.speed + " mph");
-        var day4Wind = $("#day-4").children(1).children().eq(1).text("Wind : " + every8thForecast[3].wind.speed + " mph");
-        var day5Wind = $("#day-5").children(1).children().eq(1).text("Wind : " + every8thForecast[4].wind.speed + " mph");
+        var day1Temp = $("#day-1").children(1).children().eq(1).text("Temp: " + every8thForecast[0].main.temp + String.fromCharCode(176) + "F");
+        var day1Temp = $("#day-2").children(1).children().eq(1).text("Temp: " + every8thForecast[1].main.temp + String.fromCharCode(176) + "F");
+        var day1Temp = $("#day-3").children(1).children().eq(1).text("Temp: " + every8thForecast[2].main.temp + String.fromCharCode(176) + "F");
+        var day1Temp = $("#day-4").children(1).children().eq(1).text("Temp: " + every8thForecast[3].main.temp + String.fromCharCode(176) + "F");
+        var day1Temp = $("#day-5").children(1).children().eq(1).text("Temp: " + every8thForecast[4].main.temp + String.fromCharCode(176) + "F");
 
-        var day1Humidity = $("#day-1").children(1).children().eq(2).text("Humidity : " + every8thForecast[0].main.humidity + " %rh");
-        var day2Humidity = $("#day-2").children(1).children().eq(2).text("Humidity : " + every8thForecast[1].main.humidity + " %rh");
-        var day3Humidity = $("#day-3").children(1).children().eq(2).text("Humidity : " + every8thForecast[2].main.humidity + " %rh");
-        var day4Humidity = $("#day-4").children(1).children().eq(2).text("Humidity : " + every8thForecast[3].main.humidity + " %rh");
-        var day5Humidity = $("#day-5").children(1).children().eq(2).text("Humidity : " + every8thForecast[4].main.humidity + " %rh");
+        var day1Wind = $("#day-1").children(1).children().eq(2).text("Wind : " + every8thForecast[0].wind.speed + " mph");
+        var day2Wind = $("#day-2").children(1).children().eq(2).text("Wind : " + every8thForecast[1].wind.speed + " mph");
+        var day3Wind = $("#day-3").children(1).children().eq(2).text("Wind : " + every8thForecast[2].wind.speed + " mph");
+        var day4Wind = $("#day-4").children(1).children().eq(2).text("Wind : " + every8thForecast[3].wind.speed + " mph");
+        var day5Wind = $("#day-5").children(1).children().eq(2).text("Wind : " + every8thForecast[4].wind.speed + " mph");
+
+        var day1Humidity = $("#day-1").children(1).children().eq(3).text("Humidity : " + every8thForecast[0].main.humidity + " %rh");
+        var day2Humidity = $("#day-2").children(1).children().eq(3).text("Humidity : " + every8thForecast[1].main.humidity + " %rh");
+        var day3Humidity = $("#day-3").children(1).children().eq(3).text("Humidity : " + every8thForecast[2].main.humidity + " %rh");
+        var day4Humidity = $("#day-4").children(1).children().eq(3).text("Humidity : " + every8thForecast[3].main.humidity + " %rh");
+        var day5Humidity = $("#day-5").children(1).children().eq(3).text("Humidity : " + every8thForecast[4].main.humidity + " %rh");
      
 
 
