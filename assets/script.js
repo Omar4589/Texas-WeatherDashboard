@@ -319,12 +319,17 @@ function mySecretSearch(click) {
         .then(function (data) {
           //get current weather data
           var searchedCityName = data.name;
+          var searchedWeatherIcon = data.weather[0].icon;
           var searchedCityTemp =
             data.main.temp + String.fromCharCode(176) + "F";
           var searchedCityWind = data.wind.speed;
           var searchedCityHum = data.main.humidity;
           //display current weather data
           $("#current-city").text(searchedCityName);
+          $("#currentWeatherIcon").attr(
+            "src",
+            "https://openweathermap.org/img/wn/" + searchedWeatherIcon + ".png"
+          );
           $("#current-temp").text(searchedCityTemp);
           $("#current-wind").text("W: " + searchedCityWind + " mph");
           $("#current-humidity").text("H: " + searchedCityHum + " %rh");
