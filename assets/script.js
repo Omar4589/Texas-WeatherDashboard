@@ -28,6 +28,9 @@ function getSavedCities() {
         );
       //EL
       savedCityButton.on("click", (event) => {
+        if (savedCities.includes(savedCityButton.text())) {
+        }
+        console.log(event.target);
         searchBar.val(event.target.textContent);
         $("#dropdown").hide();
         mySecretSearch(event);
@@ -271,8 +274,6 @@ navigator.geolocation.getCurrentPosition(function (position) {
 var searchButton = $("#search-button");
 var searchBar = $("#search-bar");
 var searchedList = $("#searched-list");
-
-searchButton.on("click", mySecretSearch);
 
 function mySecretSearch(click) {
   click.stopPropagation();
