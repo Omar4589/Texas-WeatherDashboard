@@ -26,7 +26,6 @@ function getSavedCities() {
         .addClass(
           "text-center inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
         );
-      //EL
       savedCityButton.on("click", (event) => {
         searchBar.val(event.target.textContent);
         $("#dropdown").hide();
@@ -97,7 +96,6 @@ navigator.geolocation.getCurrentPosition(function (position) {
             every8thForecast.push(forecastList[i]);
           }
         }
-        //console.log(every8thForecast);
 
         var day1Date = $("#day-1")
           .children()
@@ -319,7 +317,6 @@ function mySecretSearch(click) {
           return response.json();
         })
         .then(function (data) {
-          console.log(data);
           //get current weather data
           var searchedCityName = data.name;
           var searchedCityTemp =
@@ -341,7 +338,6 @@ function mySecretSearch(click) {
           return response.json();
         })
         .then(function (data) {
-          console.log(data);
           var forecastList = data.list;
           var every8thForecast = [];
 
