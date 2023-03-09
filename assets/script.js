@@ -80,10 +80,10 @@ navigator.geolocation.getCurrentPosition(function (position) {
         var day5Icon = $("#weatherIcon5").attr("src", "https://openweathermap.org/img/wn/" + every8thForecast[4].weather[0].icon + ".png").addClass("inline");
         
         var day1Temp = $("#day-1").children(1).children().eq(1).text("Temp: " + every8thForecast[0].main.temp + String.fromCharCode(176) + "F");
-        var day1Temp = $("#day-2").children(1).children().eq(1).text("Temp: " + every8thForecast[1].main.temp + String.fromCharCode(176) + "F");
-        var day1Temp = $("#day-3").children(1).children().eq(1).text("Temp: " + every8thForecast[2].main.temp + String.fromCharCode(176) + "F");
-        var day1Temp = $("#day-4").children(1).children().eq(1).text("Temp: " + every8thForecast[3].main.temp + String.fromCharCode(176) + "F");
-        var day1Temp = $("#day-5").children(1).children().eq(1).text("Temp: " + every8thForecast[4].main.temp + String.fromCharCode(176) + "F");
+        var day2Temp = $("#day-2").children(1).children().eq(1).text("Temp: " + every8thForecast[1].main.temp + String.fromCharCode(176) + "F");
+        var day3Temp = $("#day-3").children(1).children().eq(1).text("Temp: " + every8thForecast[2].main.temp + String.fromCharCode(176) + "F");
+        var day4Temp = $("#day-4").children(1).children().eq(1).text("Temp: " + every8thForecast[3].main.temp + String.fromCharCode(176) + "F");
+        var day5Temp = $("#day-5").children(1).children().eq(1).text("Temp: " + every8thForecast[4].main.temp + String.fromCharCode(176) + "F");
 
         var day1Wind = $("#day-1").children(1).children().eq(2).text("Wind : " + every8thForecast[0].wind.speed + " mph");
         var day2Wind = $("#day-2").children(1).children().eq(2).text("Wind : " + every8thForecast[1].wind.speed + " mph");
@@ -104,14 +104,27 @@ navigator.geolocation.getCurrentPosition(function (position) {
 //get search bar and search button 
 var searchButton = $("#search-button");
 var searchBar = $("#search-bar");
+var searchedList = $("#searched-list");
+
     
 //Click event listener for searchButton
 searchButton.on("click", searchCity);
     
 //define funciton for when button is clicked
-function searchCity() {
+function searchCity(click) {
+  click.stopPropagation();
+  click.preventDefault();
 //user input is recorded
   var userInput = searchBar.val();
+  //user input is stored in local storafe
+  localStorage.setItem("searchedCity", userInput);
+  //variable containing city from local storage
+  var storedCity = localStorage.getItem("searchedCity");
+  var listItem = $('<li>');
+  var storedCityButton = $('<button>').text(storedCity).addClass("text-center inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white").attr('type', 'submit');
+  
+  searchedList.append(listItem.append(storedCityButton));
+  
 //API Url
   var geocodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${userInput},TX,US&limit=1&appid=e63fb1d66b06cf4ca24641a785955170`;
 //call API
@@ -177,10 +190,10 @@ function searchCity() {
         
 
         var day1Temp = $("#day-1").children(1).children().eq(1).text("Temp: " + every8thForecast[0].main.temp + String.fromCharCode(176) + "F");
-        var day1Temp = $("#day-2").children(1).children().eq(1).text("Temp: " + every8thForecast[1].main.temp + String.fromCharCode(176) + "F");
-        var day1Temp = $("#day-3").children(1).children().eq(1).text("Temp: " + every8thForecast[2].main.temp + String.fromCharCode(176) + "F");
-        var day1Temp = $("#day-4").children(1).children().eq(1).text("Temp: " + every8thForecast[3].main.temp + String.fromCharCode(176) + "F");
-        var day1Temp = $("#day-5").children(1).children().eq(1).text("Temp: " + every8thForecast[4].main.temp + String.fromCharCode(176) + "F");
+        var day2Temp = $("#day-2").children(1).children().eq(1).text("Temp: " + every8thForecast[1].main.temp + String.fromCharCode(176) + "F");
+        var day3Temp = $("#day-3").children(1).children().eq(1).text("Temp: " + every8thForecast[2].main.temp + String.fromCharCode(176) + "F");
+        var day4Temp = $("#day-4").children(1).children().eq(1).text("Temp: " + every8thForecast[3].main.temp + String.fromCharCode(176) + "F");
+        var day5Temp = $("#day-5").children(1).children().eq(1).text("Temp: " + every8thForecast[4].main.temp + String.fromCharCode(176) + "F");
 
         var day1Wind = $("#day-1").children(1).children().eq(2).text("Wind : " + every8thForecast[0].wind.speed + " mph");
         var day2Wind = $("#day-2").children(1).children().eq(2).text("Wind : " + every8thForecast[1].wind.speed + " mph");
@@ -202,6 +215,37 @@ function searchCity() {
 
 
 };
+
+//Function will run only after document has loaded.
+$(document).ready(function() {
+  var searchedList = $('#searched-list button')
+  //Event listener on dropdown button
+  $('#dropdown-button').click(function(event) {
+    event.stopPropagation(); // Stop the event from propagating to the document
+    $('#dropdown').toggle(); // Toggle the visibility of the dropdown
+    
+  });
+
+  // When the document is clicked
+  $(document).click(function(event) {
+    // If the click is not on the dropdown or the dropdown button
+    if (!$(event.target).closest('#dropdown').length && !$(event.target).is('#dropdown-button')) {
+      $('#dropdown').hide(); // toggle the visibility of  the dropdown
+    }
+  });
+
+  //When a city button in the dropdown is clicked
+  $('#searched-list button').click(function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    var city = $(this).text() // Get the text of the button
+    $('#search-bar').val(city) // Set the search input value to the city
+    $('#dropdown').toggle() // Hide the dropdown
+    searchCity();
+  });
+});
+
 
 
           
